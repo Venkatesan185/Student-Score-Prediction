@@ -1,0 +1,97 @@
+    :root{
+  --bg:#0b1220;
+  --card:#111b33;
+  --text:#e7eefc;
+  --muted:#a9b7dd;
+  --primary:#4f7cff;
+  --danger:#e64b4b;
+  --border:rgba(255,255,255,.12);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#050a14);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+}
+.container{
+  max-width:1100px;
+  margin:28px auto;
+  padding:0 16px;
+}
+
+h1{margin:0 0 18px;font-size:28px}
+
+.card{
+  background:rgba(17,27,51,.95);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  margin:14px 0;
+}
+.card h2{margin:0 0 12px; font-size:20px}
+
+.grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px;}
+.grid-title{font-size:16px; color:var(--muted)}
+label{color:var(--muted); font-size:13px; margin-top:8px}
+input{
+  width:100%;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#0b1328;
+  color:var(--text);
+  outline:none;
+}
+input:focus{border-color:rgba(79,124,255,.7)}
+
+.primary{
+  grid-column: 1 / -1;
+  margin-top:6px;
+  background:var(--primary);
+  border:none;
+  color:white;
+  padding:11px 14px;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+hr{border:none; border-top:1px solid var(--border); margin:16px 0}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  overflow:hidden;
+  border-radius:12px;
+}
+.table th, .table td{
+  border-bottom:1px solid var(--border);
+  padding:10px 8px;
+  text-align:left;
+  font-size:13px;
+  vertical-align:top;
+}
+.table thead th{
+  color:var(--muted);
+  font-weight:600;
+}
+
+.actions{display:flex; gap:8px}
+.small{
+  padding:7px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#0b1328;
+  color:var(--text);
+  cursor:pointer;
+  font-weight:600;
+}
+.small.danger{border-color:rgba(230,75,75,.45); color:#ffd6d6}
+.small.danger:hover{background:rgba(230,75,75,.12)}
+.small:hover{background:rgba(79,124,255,.10)}
+
+.result{margin-top:12px; color:var(--muted); min-height:20px; font-size:14px}
+
