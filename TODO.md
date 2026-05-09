@@ -8,6 +8,5 @@
 - [x] Frontend: create `frontend/index.html` UI (students CRUD + prediction)
 - [x] Frontend: add `frontend/app.js` to call backend APIs
 - [x] Frontend: add `frontend/style.css`
-- [ ] Test: run `uvicorn main:app --reload` and verify UI works
-
-
+- [x] Test: run `uvicorn main:app --reload` and verify UI works
+- [ ] UI: Add footer text "Website Created and Owned By Venkatesan K @ 2026"

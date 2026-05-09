@@ -60,8 +60,17 @@ predictForm.addEventListener('submit', async (e) => {
     });
 
     predictResult.textContent = `Predicted Final Exam Score: ${data.predicted_score}`;
+    predictResult.classList.remove('pop');
+    // force reflow to restart animation reliably
+    void predictResult.offsetWidth;
+    predictResult.classList.add('pop');
+
   } catch (err) {
     predictResult.textContent = `Error: ${err.message}`;
+    predictResult.classList.remove('pop');
+    void predictResult.offsetWidth;
+    predictResult.classList.add('pop');
+
   }
 });
 
