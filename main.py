@@ -11,7 +11,8 @@ STATIC_DIR = os.path.abspath(FRONTEND_DIR)
 
 
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 
 from typing import List, Optional
@@ -35,33 +36,35 @@ app.add_middleware(
 
 # Pydantic models
 class Student(BaseModel):
-    Hours_Studied: float
-    Attendance: float
-    Parental_Involvement: str
-    Access_to_Resources: str
-    Extracurricular_Activities: str
-    Sleep_Hours: float
-    Previous_Scores: float
-    Motivation_Level: str
-    Internet_Access: str
-    Tutoring_Sessions: int
+    Hours_Studied: float = Field(..., ge=0, le=24)
+    Attendance: float = Field(..., ge=0, le=100)
+    Parental_Involvement: str = Field(..., min_length=1)
+    Access_to_Resources: str = Field(..., min_length=1)
+    Extracurricular_Activities: str = Field(..., min_length=1)
+    Sleep_Hours: float = Field(..., ge=0, le=24)
+    Previous_Scores: float = Field(..., ge=0, le=100)
+    Motivation_Level: str = Field(..., min_length=1)
+    Internet_Access: str = Field(..., min_length=1)
+    Tutoring_Sessions: int = Field(..., ge=0)
     # Final_Exam_Score not needed for input
+
 
 class StudentOut(Student):
     id: int
     Final_Exam_Score: Optional[float] = None
 
 class PredictionInput(BaseModel):
-    Hours_Studied: float
-    Attendance: float
-    Parental_Involvement: str
-    Access_to_Resources: str
-    Extracurricular_Activities: str
-    Sleep_Hours: float
-    Previous_Scores: float
-    Motivation_Level: str
-    Internet_Access: str
-    Tutoring_Sessions: int
+    Hours_Studied: float = Field(..., ge=0, le=24)
+    Attendance: float = Field(..., ge=0, le=100)
+    Parental_Involvement: str = Field(..., min_length=1)
+    Access_to_Resources: str = Field(..., min_length=1)
+    Extracurricular_Activities: str = Field(..., min_length=1)
+    Sleep_Hours: float = Field(..., ge=0, le=24)
+    Previous_Scores: float = Field(..., ge=0, le=100)
+    Motivation_Level: str = Field(..., min_length=1)
+    Internet_Access: str = Field(..., min_length=1)
+    Tutoring_Sessions: int = Field(..., ge=0)
+
 
 class PredictionOut(BaseModel):
     predicted_score: float
@@ -160,7 +163,8 @@ async def create_student(student: Student):
     conn.commit()
     conn.close()
     load_students()
-    return get_student(student_id)
+    return await get_student(student_id)
+
 
 @app.put("/students/{student_id}", response_model=StudentOut)
 async def update_student(student_id: int, student: Student):
@@ -181,7 +185,8 @@ async def update_student(student_id: int, student: Student):
     conn.commit()
     conn.close()
     load_students()
-    return get_student(student_id)
+    return await get_student(student_id)
+
 
 @app.delete("/students/{student_id}")
 async def delete_student(student_id: int):
